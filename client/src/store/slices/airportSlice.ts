@@ -2,32 +2,32 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { IAirport } from "../../models/models"
 
 interface AirportState {
-    loading: Boolean
-    error: string
     airports: IAirport[]
+    count: number
+    airportsPortion: number
+    page: number
 }
 
 const initialState: AirportState = {
-    loading: false,
-    error: '',
-    airports: []
+    airports: [],
+    count: 0,
+    airportsPortion: 10,
+    page: 1
 }
 
 export const airportSlice = createSlice({
     name: 'airport',
     initialState,
     reducers: {
-        fetching(state) {   
-            state.loading = true
-        },
-        fetchSuccess(state, action: PayloadAction<IAirport[]>) {
-            state.loading = false
+        setAirports(state, action: PayloadAction<IAirport[]>) {
             state.airports = action.payload
         },
-        fetchError(state, action: PayloadAction<string>) {
-            state.loading = false
-            state.error = action.payload
-        }
+        setAirportsCount(state, action: PayloadAction<number>) {
+            state.count = action.payload
+        },
+        setSelectedPage(state, action: PayloadAction<number>) {
+            state.page = action.payload
+        }   
     }
 })
 

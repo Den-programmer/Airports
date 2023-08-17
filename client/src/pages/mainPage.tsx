@@ -1,74 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AirportSearch from '../components/AirportSearch'
 import AirportFilter from '../components/AirportFilter'
 import AirportCard from '../components/AirportCard'
+import { airportAPI } from '../services/airportService'
+import { IAirport } from '../models/models'
+import ReactPaginate from 'react-paginate'
+import { airportSlice } from '../store/slices/airportSlice'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
 interface IProps {
 
 }
 
 const MainPage: React.FC<IProps> = (props) => {
-  // const [limit, setLimit] = useState<number>(100)
-  // const dispatch = useAppDispatch()
-  // useEffect(() => {
-  //   dispatch(fetchAirports())
-  // }, [])
-  // const { data: posts, error, isLoading } = postAPI.useFetchAllPostsQuery(limit)
-  // const [createPost, { error: createError, isLoading: isCreateLoading }] = postAPI.useCreatePostMutation()
-  // const [mainError, setMainError] = useState<any>(undefined)
-  // const [updatePost] = postAPI.useUpdatePostMutation()
-  // const [deletePost, { isLoading: isDeletingLoading }] = postAPI.useDeletePostMutation()
+  const dispatch = useAppDispatch()
+  const { airportsPortion, page } = useAppSelector(state => state.airport)
+  const { data: airports, error, isLoading } = airportAPI.useFetchAllAirportsQuery({ page, limit: airportsPortion })
+  const { data: airportsCount } = airportAPI.useFetchAirportsCountQuery('')
+  const [pageCount, setPageCount] = useState(0)
+  const { setAirportsCount, setSelectedPage } = airportSlice.actions
 
-  // const handleCreate = async () => {
-  //   try {
-  //     const title = prompt()
-  //     if (title) {
-  //       await createPost({ title, body: title })
-  //       setMainError('')
-  //     }
-  //   } catch (e) {
-  //     setMainError(createError && createError)
-  //   }
-  // }
+  useEffect(() => {
+    if(airportsCount) {
+      dispatch(setAirportsCount(airportsCount.count && airportsCount.count))
+      setPageCount(airportsCount.count / airportsPortion)
+    }
+  }, [airportsCount?.count, page, airportsPortion])
+
+  const handlePageClick = ({ selected }: { selected: number }) => {
+    dispatch(setSelectedPage(selected + 1))
+  }
 
   return (
     <div className='container-md mx-auto pt-5'>
       <AirportSearch />
       <AirportFilter />
-      <AirportCard />
-
-
-
-      {/* {mainError && mainError}
-      <button disabled={isCreateLoading} onClick={handleCreate}>{isCreateLoading ? 'Adding new post' : 'Add new post'}</button>
-      {isLoading && <h1>Loading...</h1>}
-      {error && <h1>Error has occuried!</h1>}
-      {posts && posts.map((post: IPost) => {
-        const handleUpdate = async () => {
-          try {
-            const title = prompt()
-            title && await updatePost({ ...post, title })
-            setMainError('')
-          } catch(err) {
-            setMainError("Failed to update post with id: " + post.id)
-          }
-        }
-
-        const handleDelete = async (e: React.MouseEvent<HTMLElement>) => {
-          e.stopPropagation()
-          try {
-            await deletePost(post)
-            setMainError('')
-          } catch(err) {
-            setMainError("Failed to delete an element with id: " + post.id)
-          }
-        }
-        return <div onClick={handleUpdate} key={post.id}>
-          <p>{post.title}</p>
-          <p>{post.body}</p>
-          <button disabled={isDeletingLoading} onClick={handleDelete}>{isDeletingLoading ? 'Deleting' : 'Delete'}</button>
-        </div>
-      })} */}
+      { isLoading && <p className="text-center text-lg">Loading...</p> }
+      {error && <p className='text-center text-lg text-danger font-weight-bold'>Failed to load airports!</p>}
+      {airports && airports.map((airport: IAirport) => <AirportCard key={airport.id} airport={airport}/>)}
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        forcePage={page - 1}
+        containerClassName='d-flex list-unstyled user-select-none'
+        pageClassName='py-1 px-2 border mr-2'
+        previousClassName='py-1 px-2 border mr-2'
+        previousLinkClassName=' link-secondary text-decoration-none'
+        nextLinkClassName='link-secondary text-decoration-none'
+        nextClassName='py-1 px-2 border'
+        activeClassName='bg-secondary text-white'
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="<"
+      />
     </div>
   )
 }

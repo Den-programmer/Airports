@@ -1,30 +1,232 @@
 {
-  "airports": {
-    "count": 57421,
-    "next": 2,
-    "previous": null,
-    "results": [
-      {
-        "id": 17811,
-        "name": "\"Der Dinge\" Airfield",
-        "ident": "DE-0140",
-        "local_code": null,
-        "region": "DE-HE",
-        "type": "small_airport",
-        "country": "DE"
-      },
-      {
-        "id": 18496,
-        "name": "'5 Gravenvoeren heliport",
-        "ident": "EBSN",
-        "local_code": null,
-        "region": "BE-WLG",
-        "type": "closed",
-        "country": "BE"
-      }
-    ]
-  },
-  "profile": {
-    "name": "typicode"
+  "airports": [
+    {
+      "id": 1,
+      "name": "John F. Kennedy International Airport",
+      "ident": "JFK",
+      "local_code": "KJFK",
+      "region": "North America",
+      "type": "International",
+      "country": "United States"
+    },
+    {
+      "id": 2,
+      "name": "Heathrow Airport",
+      "ident": "LHR",
+      "local_code": "EGLL",
+      "region": "Europe",
+      "type": "International",
+      "country": "United Kingdom"
+    },
+    {
+      "id": 3,
+      "name": "Charles de Gaulle Airport",
+      "ident": "CDG",
+      "local_code": "LFPG",
+      "region": "Europe",
+      "type": "International",
+      "country": "France"
+    },
+    {
+      "id": 4,
+      "name": "Tokyo Haneda Airport",
+      "ident": "HND",
+      "local_code": "RJTT",
+      "region": "Asia",
+      "type": "International",
+      "country": "Japan"
+    },
+    {
+      "id": 5,
+      "name": "Sydney Kingsford Smith Airport",
+      "ident": "SYD",
+      "local_code": "YSSY",
+      "region": "Oceania",
+      "type": "International",
+      "country": "Australia"
+    },
+    {
+      "id": 6,
+      "name": "Dubai International Airport",
+      "ident": "DXB",
+      "local_code": "OMDB",
+      "region": "Middle East",
+      "type": "International",
+      "country": "United Arab Emirates"
+    },
+    {
+      "id": 7,
+      "name": "Frankfurt Airport",
+      "ident": "FRA",
+      "local_code": "EDDF",
+      "region": "Europe",
+      "type": "International",
+      "country": "Germany"
+    },
+    {
+      "id": 8,
+      "name": "Beijing Capital International Airport",
+      "ident": "PEK",
+      "local_code": "ZBAA",
+      "region": "Asia",
+      "type": "International",
+      "country": "China"
+    },
+    {
+      "id": 9,
+      "name": "Toronto Pearson International Airport",
+      "ident": "YYZ",
+      "local_code": "CYYZ",
+      "region": "North America",
+      "type": "International",
+      "country": "Canada"
+    },
+    {
+      "id": 10,
+      "name": "São Paulo/Guarulhos–Governador André Franco Montoro International Airport",
+      "ident": "GRU",
+      "local_code": "SBGR",
+      "region": "South America",
+      "type": "International",
+      "country": "Brazil"
+    },
+    {
+      "id": 11,
+      "name": "Incheon International Airport",
+      "ident": "ICN",
+      "local_code": "RKSI",
+      "region": "Asia",
+      "type": "International",
+      "country": "South Korea"
+    },
+    {
+      "id": 12,
+      "name": "Amsterdam Schiphol Airport",
+      "ident": "AMS",
+      "local_code": "EHAM",
+      "region": "Europe",
+      "type": "International",
+      "country": "Netherlands"
+    },
+    {
+      "id": 13,
+      "name": "Hong Kong International Airport",
+      "ident": "HKG",
+      "local_code": "VHHH",
+      "region": "Asia",
+      "type": "International",
+      "country": "Hong Kong"
+    },
+    {
+      "id": 14,
+      "name": "Munich Airport",
+      "ident": "MUC",
+      "local_code": "EDDM",
+      "region": "Europe",
+      "type": "International",
+      "country": "Germany"
+    },
+    {
+      "id": 15,
+      "name": "Los Angeles International Airport",
+      "ident": "LAX",
+      "local_code": "KLAX",
+      "region": "North America",
+      "type": "International",
+      "country": "United States"
+    },
+    {
+      "id": 16,
+      "name": "Singapore Changi Airport",
+      "ident": "SIN",
+      "local_code": "WSSS",
+      "region": "Asia",
+      "type": "International",
+      "country": "Singapore"
+    },
+    {
+      "id": 17,
+      "name": "Istanbul Airport",
+      "ident": "IST",
+      "local_code": "LTBA",
+      "region": "Europe",
+      "type": "International",
+      "country": "Turkey"
+    },
+    {
+      "id": 18,
+      "name": "Denver International Airport",
+      "ident": "DEN",
+      "local_code": "KDEN",
+      "region": "North America",
+      "type": "International",
+      "country": "United States"
+    },
+    {
+      "id": 19,
+      "name": "Zurich Airport",
+      "ident": "ZRH",
+      "local_code": "LSZH",
+      "region": "Europe",
+      "type": "International",
+      "country": "Switzerland"
+    },
+    {
+      "id": 20,
+      "name": "Benito Juárez International Airport",
+      "ident": "MEX",
+      "local_code": "MMMX",
+      "region": "North America",
+      "type": "International",
+      "country": "Mexico"
+    },
+    {
+      "id": 21,
+      "name": "Suvarnabhumi Airport",
+      "ident": "BKK",
+      "local_code": "VTBS",
+      "region": "Asia",
+      "type": "International",
+      "country": "Thailand"
+    },
+    {
+      "id": 22,
+      "name": "O'Hare International Airport",
+      "ident": "ORD",
+      "local_code": "KORD",
+      "region": "North America",
+      "type": "International",
+      "country": "United States"
+    },
+    {
+      "id": 23,
+      "name": "Barcelona–El Prat Airport",
+      "ident": "BCN",
+      "local_code": "LEBL",
+      "region": "Europe",
+      "type": "International",
+      "country": "Spain"
+    },
+    {
+      "id": 24,
+      "name": "Indira Gandhi International Airport",
+      "ident": "DEL",
+      "local_code": "VIDP",
+      "region": "Asia",
+      "type": "International",
+      "country": "India"
+    },
+    {
+      "id": 25,
+      "name": "San Francisco International Airport",
+      "ident": "SFO",
+      "local_code": "KSFO",
+      "region": "North America",
+      "type": "International",
+      "country": "United States"
+    }
+  ],
+  "airportsCount": {
+    "count": 25
   }
 }
