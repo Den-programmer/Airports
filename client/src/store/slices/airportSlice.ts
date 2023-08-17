@@ -6,13 +6,15 @@ interface AirportState {
     count: number
     airportsPortion: number
     page: number
+    searchTerm: string
 }
 
 const initialState: AirportState = {
     airports: [],
     count: 0,
     airportsPortion: 10,
-    page: 1
+    page: 1,
+    searchTerm: ''
 }
 
 export const airportSlice = createSlice({
@@ -27,6 +29,9 @@ export const airportSlice = createSlice({
         },
         setSelectedPage(state, action: PayloadAction<number>) {
             state.page = action.payload
+        },
+        setSearchTerm(state, action: PayloadAction<string>) {
+            state.searchTerm = action.payload
         }   
     }
 })

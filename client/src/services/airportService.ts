@@ -4,6 +4,7 @@ import { IAirport } from "../models/models"
 interface IAirportsParams {
     page: number
     limit: number
+    term: string
 }
 
 interface IAirportsCount {
@@ -20,7 +21,8 @@ export const airportAPI = createApi({
                 url: '/airports',
                 params: {
                     _page: params.page,
-                    _limit: params.limit
+                    _limit: params.limit,
+                    q: params.term
                 }
             }),
             providesTags: result => ['Airport']
