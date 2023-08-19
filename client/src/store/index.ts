@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import airportReducer from './slices/airportSlice'
+import airportFiltersReducer from './slices/airportFiltersSlice'
 import { airportAPI } from "../services/airportService"
 
 const rootReducer = combineReducers({
     airport: airportReducer,
+    airportFilters: airportFiltersReducer,
     [airportAPI.reducerPath]: airportAPI.reducer
 })
 

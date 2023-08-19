@@ -7,6 +7,7 @@ import { IAirport } from '../models/models'
 import ReactPaginate from 'react-paginate'
 import { airportSlice } from '../store/slices/airportSlice'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { airportFiltersSlice } from '../store/slices/airportFiltersSlice'
 
 interface IProps {
 
@@ -14,11 +15,31 @@ interface IProps {
 
 const MainPage: React.FC<IProps> = (props) => {
   const dispatch = useAppDispatch()
-  const { airportsPortion, page, searchTerm } = useAppSelector(state => state.airport)
+  const { airportsPortion, page, searchTerm, currentType, currentRegion, currentCountry } = useAppSelector(state => state.airport)
   const { data: airports, error, isLoading } = airportAPI.useFetchAllAirportsQuery({ page, limit: airportsPortion, term: searchTerm })
   const { data: airportsCount } = airportAPI.useFetchAirportsCountQuery('')
   const [pageCount, setPageCount] = useState(0)
   const { setAirportsCount, setSelectedPage } = airportSlice.actions
+  const { setTypes, setRegions, setCountries } = airportFiltersSlice.actions
+
+  const types = airports?.map(airport => airport.type)
+  const regions = airports?.map(airport => airport.region)
+  const countries = airports?.map(airport => airport.country)
+
+  useEffect(() => {
+    if(types) {
+      const uniqueTypes = Array.from(new Set(types))
+      dispatch(setTypes(uniqueTypes))
+    }
+    if(regions) {
+      const uniqueRegions = Array.from(new Set(regions))
+      dispatch(setRegions(uniqueRegions))
+    }
+    if(countries) {
+      const uniqueCountries = Array.from(new Set(countries))
+      dispatch(setCountries(uniqueCountries))
+    }
+  }, [airports])
 
   useEffect(() => {
     if (airportsCount) {
@@ -31,13 +52,21 @@ const MainPage: React.FC<IProps> = (props) => {
     dispatch(setSelectedPage(selected + 1))
   }
 
+  const airportsFilteredWithType = airports?.filter(airport => airport.type.includes(currentType))
+
+  const airportsFilteredWithRegionAndType = airportsFilteredWithType?.filter(airport => airport.region.includes(currentRegion))
+
+  const airportsFilteredWithCountryAndRegionAndType = airportsFilteredWithRegionAndType?.filter(airport => airport.country.includes(currentCountry))
+
   return (
     <div className='container-md mx-auto pt-5'>
       <AirportSearch />
       <AirportFilter />
       {isLoading && <p className="text-center text-lg">Loading...</p>}
       {error && <p className='text-center text-lg text-danger font-weight-bold'>Failed to load airports!</p>}
-      {airports && airports.map((airport: IAirport) => <AirportCard key={airport.id} airport={airport} />)}
+      {airportsFilteredWithCountryAndRegionAndType &&
+      airportsFilteredWithCountryAndRegionAndType
+      .map((airport: IAirport) => <AirportCard key={airport.id} airport={airport} />)}
       <div className='d-flex justify-content-center'>
         <ReactPaginate
           breakLabel="..."

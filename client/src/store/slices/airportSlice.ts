@@ -7,6 +7,9 @@ interface AirportState {
     airportsPortion: number
     page: number
     searchTerm: string
+    currentType: string
+    currentRegion: string
+    currentCountry: string
 }
 
 const initialState: AirportState = {
@@ -14,7 +17,10 @@ const initialState: AirportState = {
     count: 0,
     airportsPortion: 10,
     page: 1,
-    searchTerm: ''
+    searchTerm: '',
+    currentType: '',
+    currentRegion: '',
+    currentCountry: ''
 }
 
 export const airportSlice = createSlice({
@@ -32,7 +38,17 @@ export const airportSlice = createSlice({
         },
         setSearchTerm(state, action: PayloadAction<string>) {
             state.searchTerm = action.payload
-        }   
+        },
+        setCurrentType(state, action: PayloadAction<string>) {
+            state.currentType = action.payload === 'Type:' ? '' : action.payload
+        },
+        setCurrentRegion(state, action: PayloadAction<string>) {
+            state.currentRegion = action.payload === 'Region:' ? '' : action.payload
+        },
+        setCurrentCountry(state, action: PayloadAction<string>) {
+            debugger
+            state.currentCountry = action.payload === 'Country:' ? '' : action.payload
+        }  
     }
 })
 
