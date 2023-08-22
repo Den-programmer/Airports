@@ -1,10 +1,20 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import MainPage from './pages/mainPage'
 import AuthPage from './pages/authPage'
 import AirportDetailPage from './pages/airportDetailPage'
 import Navigation from './components/Navigation'
+import { useAppSelector } from './hooks/redux'
+import { useEffect } from 'react'
 
 function App() {
+  const { isAuth } = useAppSelector(state => state.auth);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate('/auth')
+    }
+  }, [isAuth, navigate])
   return (
     <div className="App">
       <Navigation />

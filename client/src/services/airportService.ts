@@ -32,6 +32,15 @@ export const airportAPI = createApi({
                 url: '/airportsCount'
             }),
             providesTags: result => ['AirportsCount']
+        }),
+        fetchAirport: build.query<IAirport[], number>({
+            query: (airportId: number) => ({
+                url: '/airports',
+                params: {
+                    id: airportId
+                }
+            }),
+            providesTags: result => ['Airport']
         })
     })
 })

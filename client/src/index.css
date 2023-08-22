@@ -45,7 +45,7 @@ strong {
 
 .search-input {
     width: 100%;
-     margin: 20px auto;
+    margin: 20px auto;
 }
 
 .search-icon {
@@ -73,15 +73,75 @@ strong {
     font-size: 16px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .reset-button:hover {
+}
+
+.reset-button:hover {
     background-color: #FF814A;
     color: #FFFFFF;
+}
+
+.info-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f8f9fa;
+    transition: transform 0.2s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.airport-name {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.airport-details {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.left-column {
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+
+.right-column {
+    padding-left: 20px;
+}
+
+
+
+.auth-form-container {
+    margin-top: 100px;
+}
+
+.auth-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-form-button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.auth-form-text {
+    text-align: center;
+    margin-top: 10px;
+    color: #888; 
+    font-style: italic;
+    font-size: 14px;
+    cursor: pointer;
   }
-  
-  
-  
-  
-  
-  

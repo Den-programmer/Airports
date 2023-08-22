@@ -1,4 +1,5 @@
 export interface IAirport {
+    // Main
     id: number
     name: string
     ident: string
@@ -6,17 +7,16 @@ export interface IAirport {
     region: string
     type: string
     country: string
+    // Details
+    continent: string
+    coordinates: string
+    elevation_ft: string
+    gps_code: string
+    municipality: string
 }
 
-export interface ServerRes<T> {
-    count: number
-    next: number
-    previous: number
-    results: T[]
-}
-
-export interface IPost {
-    id?: number
-    title: string
-    body: string
+export interface IUser {
+    access: string
+    username: string
+    password: string
 }

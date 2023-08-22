@@ -1,19 +1,23 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import airportReducer from './slices/airportSlice'
 import airportFiltersReducer from './slices/airportFiltersSlice'
+import authReducer from './slices/authSlice'
 import { airportAPI } from "../services/airportService"
+import { authAPI } from "../services/authService"
 
 const rootReducer = combineReducers({
     airport: airportReducer,
     airportFilters: airportFiltersReducer,
-    [airportAPI.reducerPath]: airportAPI.reducer
+    auth: authReducer,
+    [airportAPI.reducerPath]: airportAPI.reducer,
+    [authAPI.reducerPath]: authAPI.reducer
 })
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) => {
-            return getDefaultMiddleware().concat(airportAPI.middleware)
+            return getDefaultMiddleware().concat(airportAPI.middleware, authAPI.middleware)
         } 
     })
 }
