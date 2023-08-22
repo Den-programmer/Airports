@@ -356,10 +356,16 @@
   },
   "users": [
     {
-      "access": "ix6Wp10IPWWgUdqvfhNdveDNV1WNqf5wYONaTmNEUHYwN2ULVX",
-      "username": "denisgrigorov094@gmail.com",
-      "password": "#$FG749",
+      "access": "hQeTRpxuhV1ctLzJdIMzL4lGmxB37GBUAwZ30NEZ11oc1ymUYT",
+      "username": "test",
+      "password": "qwertyu",
       "id": 1
+    },
+    {
+      "access": "kSY4sIHHgYoOopmx3BKDeCGku8ifpn0e9WRJA4hoW1ySc3NEpC",
+      "username": "denisgrigorov094@gmail.com",
+      "password": "#$FG746",
+      "id": 2
     }
   ]
 }

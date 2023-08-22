@@ -145,3 +145,9 @@ strong {
     font-size: 14px;
     cursor: pointer;
 }
+
+@media screen and (max-device-width: 540px) {
+    .container-md {
+        width: 80%;
+    }        
+}
