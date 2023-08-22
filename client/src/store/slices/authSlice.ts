@@ -1,5 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
+const ACCESS_KEY = 'dc-access'
+const USERNAME_KEY = 'dc-username'
+
 interface AuthState {
     access: string
     username: string
@@ -13,10 +16,10 @@ interface ILoginPayload {
 }
 
 const initialState: AuthState = {
-   access: '', 
-   username: '',
-   isAuth: false,
-   isRegister: true
+    access: localStorage.getItem(ACCESS_KEY) ?? '',
+    username: localStorage.getItem(USERNAME_KEY) ?? '',
+    isAuth: Boolean(localStorage.getItem(ACCESS_KEY)),
+    isRegister: true
 }
 
 export const authSlice = createSlice({
@@ -30,11 +33,17 @@ export const authSlice = createSlice({
             state.isAuth = true
             state.access = action.payload.access
             state.username = action.payload.username
+
+            localStorage.setItem(ACCESS_KEY, action.payload.access)
+            localStorage.setItem(USERNAME_KEY, action.payload.username)
         },
         logout(state) {
             state.isAuth = false
             state.access = ''
             state.username = ''
+
+            localStorage.removeItem(ACCESS_KEY)
+            localStorage.removeItem(USERNAME_KEY)
         }
     }
 })
