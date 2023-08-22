@@ -27,15 +27,15 @@ const MainPage: React.FC<IProps> = (props) => {
   const countries = airports?.map(airport => airport.country)
 
   useEffect(() => {
-    if(types) {
+    if (types) {
       const uniqueTypes = Array.from(new Set(types))
       dispatch(setTypes(uniqueTypes))
     }
-    if(regions) {
+    if (regions) {
       const uniqueRegions = Array.from(new Set(regions))
       dispatch(setRegions(uniqueRegions))
     }
-    if(countries) {
+    if (countries) {
       const uniqueCountries = Array.from(new Set(countries))
       dispatch(setCountries(uniqueCountries))
     }
@@ -65,8 +65,11 @@ const MainPage: React.FC<IProps> = (props) => {
       {isLoading && <p className="text-center text-lg">Loading...</p>}
       {error && <p className='text-center text-lg text-danger font-weight-bold'>Failed to load airports!</p>}
       {airportsFilteredWithCountryAndRegionAndType &&
-      airportsFilteredWithCountryAndRegionAndType
-      .map((airport: IAirport) => <AirportCard key={airport.id} airport={airport} />)}
+        airportsFilteredWithCountryAndRegionAndType.length !== 0 ? airportsFilteredWithCountryAndRegionAndType
+          .map((airport: IAirport) => <AirportCard key={airport.id} airport={airport} />) : <div className='text-center my-3'>
+        <p className='text-2xl font-bold mb-3 text-gray-800'>Uh-oh, no airports found!</p>
+        <p className='text-lg text-gray-600'>Adjust your search filters or check back later.</p>
+      </div>}
       <div className='d-flex justify-content-center'>
         <ReactPaginate
           breakLabel="..."
